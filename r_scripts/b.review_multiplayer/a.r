@@ -1,0 +1,12 @@
+source("/home/mich/Documents/steam-insights/r_scripts/base.r")
+table <- dbGetQuery(db, "SELECT * FROM reviews WHERE EXISTS (SELECT * FROM tags WHERE reviews.app_id = tags.app_id AND tag = 'PvP')")
+print(mean(table$total))
+print(summary(table$total))
+print(sd(table$total))
+q <- quantile(table$total)
+iqr <- q[3] - q[1]
+low <- q[1] - (iqr * 1.5)
+hi <- q[3] + (iqr * 1.5)
+outlier_test <- sapply(table$total, function(i) i<low|i>hi)
+print(table$total[outlier_test])
+dbDisconnect(db)

@@ -1,0 +1,11 @@
+source("/home/mich/Documents/steam-insights/r_scripts/base.r")
+print(mean(reviews$total))
+print(summary(reviews$total))
+print(sd(reviews$total))
+q <- quantile(reviews$total)
+iqr <- q[3] - q[1]
+low <- q[1] - (iqr * 1.5)
+hi <- q[3] + (iqr * 1.5)
+outlier_test <- sapply(reviews$total, function(i) i<low|i>hi)
+print(reviews$total[outlier_test])
+dbDisconnect(db)
