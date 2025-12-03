@@ -1,3 +1,5 @@
 source("/home/mich/Documents/steam-insights/r_scripts/base.r")
+library(ggplot2)
 boxplot(reviews$total)
+print(ggplot(reviews, aes(x = total)) + geom_density())
 dbDisconnect(db)

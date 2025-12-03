@@ -1,5 +1,4 @@
 source("/home/mich/Documents/steam-insights/r_scripts/base.r")
-#barplot(table(tags$tag)) # TODO : figure out how to represent this better
 library(treemap)
 library(wordcloud)
 df <- dbGetQuery(db, "
