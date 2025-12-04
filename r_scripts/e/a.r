@@ -1,4 +1,4 @@
-source("/home/mich/Documents/steam-insights/r_scripts/base.r")
+source("./r_scripts/base.r")
 
 df <- dbGetQuery(db, "
 SELECT steamspy_insights.price, reviews.total, reviews.review_score, games.name

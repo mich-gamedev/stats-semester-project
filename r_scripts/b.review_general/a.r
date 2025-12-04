@@ -1,4 +1,4 @@
-source("/home/mich/Documents/steam-insights/r_scripts/base.r")
+source("./r_scripts/base.r")
 print(mean(reviews$total))
 print(summary(reviews$total))
 print(sd(reviews$total))

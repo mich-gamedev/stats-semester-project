@@ -1,6 +1,5 @@
 # config
-cfg_path <- "/home/mich/Documents/steam-insights/config.r"
-source(cfg_path)
+print(getwd())
 # libraries
 library("httpgd")
 library("RMySQL")
@@ -9,7 +8,7 @@ library("plotly")
 # db setup
 # documentation (SQL in R): https://jcfly3000.github.io/Into-R/data%20manipulation/7%20SQL%20database.html
 # documentation (SQL)     : https://www.w3schools.com/sql/
-db <- dbConnect(RSQLite::SQLite(), db_path)
+db <- dbConnect(RSQLite::SQLite(), "/home/mich/Documents/steam-insights/steam.db")
 dbListTables(db)
 # data frames
 categories   <- dbGetQuery(db, "SELECT * FROM categories") # `SELECT * FROM ___` will grab the table called ___

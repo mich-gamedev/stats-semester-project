@@ -1,4 +1,4 @@
-source("/home/mich/Documents/steam-insights/r_scripts/base.r")
+source("./r_scripts/base.r")
 library(treemap)
 library(wordcloud)
 df <- dbGetQuery(db, "

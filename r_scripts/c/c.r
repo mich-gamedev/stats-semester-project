@@ -1,4 +1,4 @@
-source("/home/mich/Documents/steam-insights/r_scripts/c/a.r")
+source("./r_scripts/c/a.r")
 library(plotly)
 rows_names <- dimnames(tbl_df)[1]
 print(rows_names)

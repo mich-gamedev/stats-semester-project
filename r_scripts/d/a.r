@@ -1,5 +1,4 @@
-source("/home/mich/Documents/steam-insights/r_scripts/base.r")
-print("before SQL query")
+source("./r_scripts/base.r")
 df <- dbGetQuery(db, "
 SELECT reviews.total, reviews.review_score, steamspy_insights.publisher AS publishers
 FROM reviews
@@ -10,6 +9,5 @@ AND reviews.total > 500
 AND NOT publishers='\\N'
 AND (SELECT COUNT(publisher) FROM steamspy_insights WHERE steamspy_insights.publisher=publishers)>1
 ")
-print("SQL Query finished")
 means <- by(df$total, df$publisher, mean)
 stdevs <- by(df$total, df$publisher, sd)
