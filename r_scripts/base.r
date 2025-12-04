@@ -5,8 +5,10 @@ source(cfg_path)
 library("httpgd")
 library("RMySQL")
 library("RSQLite")
-library(plotly)
+library("plotly")
 # db setup
+# documentation (SQL in R): https://jcfly3000.github.io/Into-R/data%20manipulation/7%20SQL%20database.html
+# documentation (SQL)     : https://www.w3schools.com/sql/
 db <- dbConnect(RSQLite::SQLite(), db_path)
 dbListTables(db)
 # data frames
@@ -17,5 +19,6 @@ genres       <- dbGetQuery(db, "SELECT * FROM genres WHERE genre IN (SELECT tl_g
 reviews      <- dbGetQuery(db, "SELECT * FROM reviews WHERE total BETWEEN 2000 AND 8000000")
 steamspy     <- dbGetQuery(db, "SELECT * FROM steamspy_insights")
 tags         <- dbGetQuery(db, "SELECT * FROM tags")
+httpgd::hgd_close()
 httpgd::hgd()
 httpgd::hgd_view()
