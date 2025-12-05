@@ -1,0 +1,22 @@
+---
+title: "Multiplayer Games on Steam"
+output: html_document
+runtime: shiny
+---
+```{r include=FALSE}
+source("./r_scripts/base.r")
+```
+
+# Test
+
+## Sub-header
+
+-   some points
+-   some more points
+-   what the fish...
+-   [x] do checkboxes work
+
+```{r echo=FALSE, results='asis', fig.width=4, fig.height=4}
+library(shiny)
+runExample("01_hello")
+```

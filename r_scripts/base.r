@@ -5,6 +5,7 @@ library("httpgd")
 library("RMySQL")
 library("RSQLite")
 library("plotly")
+library(shiny)
 # db setup
 # documentation (SQL in R): https://jcfly3000.github.io/Into-R/data%20manipulation/7%20SQL%20database.html
 # documentation (SQL)     : https://www.w3schools.com/sql/
@@ -20,4 +21,3 @@ steamspy     <- dbGetQuery(db, "SELECT * FROM steamspy_insights")
 tags         <- dbGetQuery(db, "SELECT * FROM tags")
 httpgd::hgd_close()
 httpgd::hgd()
-httpgd::hgd_view()
