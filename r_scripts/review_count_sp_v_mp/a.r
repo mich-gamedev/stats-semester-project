@@ -1,5 +1,17 @@
-source("./r_scripts/c/a.r")
-library(plotly)
+source("./r_scripts/base.r")
+df <- dbGetQuery(db, "
+SELECT reviews.review_score_description, tags.tag
+FROM reviews
+INNER JOIN tags
+ON tags.app_id=reviews.app_id
+WHERE tags.tag IN ('Multiplayer', 'Singleplayer')
+AND (reviews.review_score_description LIKE '%Positive'
+OR reviews.review_score_description LIKE '%Negative'
+OR reviews.review_score_description='Mixed')
+")
+library(DT)
+tbl <- table(df$tag, df$review_score_description)
+tbl_df <- as.data.frame.matrix(tbl)
 library(plotly)
 rows_names <- dimnames(tbl_df)[1]
 
@@ -33,7 +45,7 @@ get_text <- function(value, total) {
 # part of plotly library
 total <- plot_tag_data$neg_3 + plot_tag_data$neg_2 + plot_tag_data$neg_1 + plot_tag_data$neg_0 + plot_tag_data$mixed + plot_tag_data$pos_0 + plot_tag_data$pos_1 + plot_tag_data$pos_2 + plot_tag_data$pos_3
 print(total)
-fig <- plot_ly(plot_tag_data, x = plot_tag_data$'c..Action.RPG....Action.Adventure....Arcade....Auto.Battler...', # I am not sure why the row name is this, not matter what i name it or even if it isn't named
+fig <- plot_ly(plot_tag_data, x = plot_tag_data$'c..Multiplayer....Singleplayer..', # I am not sure why the row name is this, not matter what i name it or even if it isn't named
 y = plot_tag_data$neg_3, 
 type = 'bar', name = 'Overwhemingly Negative', 
 text = get_text(plot_tag_data$neg_3, total), textposition = 'auto', marker = colors[1])
@@ -48,3 +60,4 @@ fig <- add_trace(fig, y = plot_tag_data$pos_3, name = 'Overwhelmingly Positive',
 fig <- layout(fig, yaxis = list(title = 'Count'), barmode = 'stack')
 
 print(fig)
+

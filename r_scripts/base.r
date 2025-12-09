@@ -6,6 +6,7 @@ library("RMySQL")
 library("RSQLite")
 library("plotly")
 library(shiny)
+library(bslib)
 # db setup
 # documentation (SQL in R): https://jcfly3000.github.io/Into-R/data%20manipulation/7%20SQL%20database.html
 # documentation (SQL)     : https://www.w3schools.com/sql/

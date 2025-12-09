@@ -7,12 +7,7 @@ FROM tags
 GROUP BY tag
 ORDER BY COUNT(app_id) DESC
 ")
-tm <- treemap(
-    df,
-    index = "tag",
-    vSize = "count",
-    type  = "index"
-)
 wc <- wordcloud(words = df$tag, freq = df$count)
+print(wc)
 
 dbDisconnect(db)

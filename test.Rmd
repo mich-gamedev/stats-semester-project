@@ -1,0 +1,38 @@
+---
+title: "Multiplayer Games on Steam"
+output: html_document
+runtime: shiny
+---
+
+```{r}
+library(shiny)
+library(bslib)
+library(plotly)
+library(palmerpenguins)
+library(dplyr)
+
+ui <- page_fluid(
+  sliderInput(
+    "slider",
+    label = "Number of bins",
+    min = 10,
+    max = 60,
+    value = 20
+  ),
+  plotlyOutput(outputId = "plot") 
+)
+
+server <- function(input, output, ...) {
+  output$plot <- renderPlotly({ 
+    p <- 
+      penguins |> 
+      filter(!is.na(body_mass_g)) |> 
+      ggplot(aes(body_mass_g)) + 
+      geom_histogram(bins = input$slider) 
+
+    ggplotly(p) 
+  }) 
+}
+
+shinyApp(ui, server)
+```
