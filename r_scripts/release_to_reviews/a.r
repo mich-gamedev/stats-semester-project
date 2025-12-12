@@ -1,17 +1,17 @@
-source("./r_scripts/e/b.r")
-library(ggplot2)
-library(htmltools)
-print(reg)
+source("./r_scripts/base.r")
 
-#fig <- ggplot(df, aes(x = df$price/100.0, y=df$total,)) +
-#    geom_point(aes(color = factor(df$review_score))) +
-#    geom_smooth(method = 'lm')
-
+df <- dbGetQuery(db, "
+SELECT games.name, games.release_date, reviews.review_score_description, reviews.total
+FROM games
+INNER JOIN reviews ON reviews.app_id = games.app_id
+WHERE games.app_id IN (SELECT app_id FROM tags WHERE tag = 'Multiplayer') AND
+games.release_date <> '\\N' AND
+(reviews.review_score_description LIKE '%Positive' OR reviews.review_score_description LIKE '%Negative' OR reviews.review_score_description = 'Mixed')
+")
 fig <- plotly::subplot(
-    ggplot(df, aes(x = df$price/100.0, y=df$total)) +
+    ggplot(df, aes(x = as.integer(strsplit(df$release_date, "-")[1]), y=df$total)) +
     geom_point(aes(color = factor(df$review_score_description), text=df$name)) +
-    geom_smooth(method = 'loess') +
-    labs(title = "Linear Regression & Local Regression (LOESS)", x = "Price ($)", y = "Review count") +
+    labs(title = "Linear Regression & Local Regression (LOESS)", x = "Release Month", y = "Review count") +
     scale_color_manual(values = c(
         "Overwhelmingly Negative" = "#680045",
         "Very Negative" = "#dd6b3b",
@@ -25,7 +25,4 @@ fig <- plotly::subplot(
     )) +
     scale_fill_discrete(breaks = c("Overwhelmingly Negative", "Very Negative", "Negative", "Mostly Negative", "Mixed", "Mostly Positive", "Positive", "Very Positive", "Overwhelmingly Positive"))
 )
-
-#htmltools::tagList(ggplotly(fig))
-#print(htmltools::tagList(plotly::subplot(ggplotly(fig))))
 print(fig)

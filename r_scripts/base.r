@@ -1,16 +1,18 @@
 # config
 print(getwd())
 # libraries
+library(DBI)
+library(ggplot2)
 library("httpgd")
-library("RMySQL")
 library("RSQLite")
+library("RMySQL")
 library("plotly")
 library(shiny)
 library(bslib)
 # db setup
 # documentation (SQL in R): https://jcfly3000.github.io/Into-R/data%20manipulation/7%20SQL%20database.html
 # documentation (SQL)     : https://www.w3schools.com/sql/
-db <- dbConnect(RSQLite::SQLite(), "/home/mich/Documents/steam-insights/steam.db")
+db <- dbConnect(RSQLite::SQLite(), "./steam.db")
 dbListTables(db)
 # data frames
 categories   <- dbGetQuery(db, "SELECT * FROM categories") # `SELECT * FROM ___` will grab the table called ___

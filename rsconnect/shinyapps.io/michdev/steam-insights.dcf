@@ -1,0 +1,10 @@
+name: steam-insights
+title:
+username: michdev
+account: michdev
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16295647
+bundleId: 11309983
+url: https://michdev.shinyapps.io/steam-insights/
+version: 1

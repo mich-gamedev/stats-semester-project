@@ -13,8 +13,6 @@ While the db I'm using does supply an owner count range, it's both imprecise and
 ![][image1]  
 Source: https://howtomarketagame.com/benchmarks/
 
-Some games on steam have adult content tags, I plan to filter out all games with such tags since this is a school project.
-
 Because the database is from late 2024, there are chances that there’s trends I would only see from an up-to-date database, or that some trends are outdated. I could scrape my own data but this seems out of scope for the project, so I'm settling for this.
 
 On the technical side, I’m using an SQL Database, and I want to try to use some SQL features that R wouldn’t be able to handle as well. R has libraries for SQL for this.

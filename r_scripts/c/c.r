@@ -33,7 +33,7 @@ get_text <- function(value, total) {
 # part of plotly library
 total <- plot_tag_data$neg_3 + plot_tag_data$neg_2 + plot_tag_data$neg_1 + plot_tag_data$neg_0 + plot_tag_data$mixed + plot_tag_data$pos_0 + plot_tag_data$pos_1 + plot_tag_data$pos_2 + plot_tag_data$pos_3
 print(total)
-fig <- plot_ly(plot_tag_data, x = plot_tag_data$'c..Action.RPG....Action.Adventure....Arcade....Auto.Battler...', # I am not sure why the row name is this, not matter what i name it or even if it isn't named
+fig <- plot_ly(plot_tag_data, x = plot_tag_data$'c..Action....Adventure....Casual....Experimental....Puzzle...', # I am not sure why the row name is this, not matter what i name it or even if it isn't named
 y = plot_tag_data$neg_3, 
 type = 'bar', name = 'Overwhemingly Negative', 
 text = get_text(plot_tag_data$neg_3, total), textposition = 'auto', marker = colors[1])

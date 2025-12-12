@@ -5,7 +5,7 @@ SELECT reviews.review_score_description, tags.tag
 FROM reviews
 INNER JOIN tags
 ON reviews.app_id=tags.app_id
-WHERE tags.tag IN (SELECT genre FROM tag_info)
+WHERE tags.tag IN (SELECT tl_genre FROM tag_info)
 AND (reviews.review_score_description LIKE '%Positive'
 OR reviews.review_score_description LIKE '%Negative'
 OR reviews.review_score_description='Mixed'
